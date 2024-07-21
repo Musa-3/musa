@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Average Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Average Calculator</h1>
+        <form method="POST">
+            <label for="runs">Runs:</label>
+            <input type="number" id="runs" name="runs" required><br><br>
+            <label for="matches">Matches:</label>
+            <input type="number" id="matches" name="matches" required><br><br>
+            <label for="display_float">Display as float:</label>
+            <input type="checkbox" id="display_float" name="display_float" value="yes"><br><br>
+            <button type="submit">Calculate</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% elif display_float == 'yes' %}
+            <p>|BELOW IS YOUR AVERAGE IN FLOAT|<br>{{ float_average }}</p>
+        {% else %}
+            <p>|BELOW IS YOUR AVERAGE|<br>{{ average }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
